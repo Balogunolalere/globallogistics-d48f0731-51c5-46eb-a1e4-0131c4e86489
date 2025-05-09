@@ -39,9 +39,13 @@ async def about(request: Request):
 async def contact(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
 
-@app.get("/terminal")
+@app.get("/terminal", name="terminal_page")
 async def terminal(request: Request):
     return templates.TemplateResponse("terminal.html", {"request": request})
+
+@app.get("/shipping", name="shipping_page")
+async def shipping(request: Request):
+    return templates.TemplateResponse("shipping.html", {"request": request})
 
 
 def send_email(sender_email: str, receiver_email: str, login: str, password: str, fname: str, email: EmailStr, message: str):
@@ -79,17 +83,17 @@ async def mail(background_tasks: BackgroundTasks, request: Request, fname: str =
     resp = RedirectResponse(url="/contact", status_code=status.HTTP_302_FOUND)
     return resp
 
-@app.get("/storage")
+@app.get("/storage", name="storage_page")
 async def storage(request: Request):
     return templates.TemplateResponse("storage.html", {"request": request})
 
 # Define a route for the path "/rail-transport" that returns the "rail-transport.html" template
-@app.get("/rail-transport")
+@app.get("/rail-transport", name="railway_page")
 async def rail_transport(request: Request):
     return templates.TemplateResponse("railway.html", {"request": request})
 
 # Define a route for the path "/pipeline-transport" that returns the "pipeline-transport.html" template
-@app.get("/pipeline-transport")
+@app.get("/pipeline-transport", name="pipeline_page")
 async def pipeline_transport(request: Request):
     return templates.TemplateResponse("pipeline.html", {"request": request})
 

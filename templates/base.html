@@ -261,13 +261,19 @@ a,
                 </a>
                 <nav role="navigation" class="navbar-menu w-nav-menu">
                     <div class="navbar-menu-left"><a href="/" aria-current="page"
-                            class="navbar-link w-nav-link w--current">Home</a><a href="/about"
-                            class="navbar-link w-nav-link">About</a><a href="/contact"
-                            class="navbar-link w-nav-link">Contact</a>
-                        <a href="/storage" class="navbar-link w-nav-link">Storage</a>
-                        <a href="/rail-transport" class="navbar-link w-nav-link">Railway</a>
-                        <a href="/pipeline-transport" class="navbar-link w-nav-link">Pipeline</a>
-                        <a href="/terminal" class="navbar-link w-nav-link">Terminal</a>
+                            class="navbar-link w-nav-link w--current">Home</a>
+                        <a href="/about" class="navbar-link w-nav-link">About</a>
+                        <a href="/contact" class="navbar-link w-nav-link">Contact</a>
+                        <div class="navbar-link w-nav-link dropdown" style="position: relative; display: inline-block;">
+                            <span style="cursor:pointer;">Services &#9662;</span>
+                            <div class="dropdown-content" style="display:none; position:absolute; left:0; background:#fff; min-width:180px; box-shadow:0 8px 16px rgba(0,0,0,0.2); z-index:1000;">
+                                <a href="{{ url_for('shipping_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Port-to-Port Shipping</a>
+                                <a href="{{ url_for('railway_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Railway Logistics</a>
+                                <a href="{{ url_for('terminal_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Terminal Handling</a>
+                                <a href="{{ url_for('pipeline_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Pipeline Transport</a>
+                                <a href="{{ url_for('storage_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Warehousing & Storage</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="navbar-menu-right">
                         <div class="text-size-small"><a href="tel" class="phone-link">+3197005030143</a>
@@ -322,15 +328,46 @@ a,
                                         <a href="/" aria-current="page" class="footer-link w--current">Home</a>
                                         <a href="/about" class="footer-link">About</a>
                                         <a href="/contact" class="footer-link">Contact</a>
-                                        <a href="/storage" class="footer-link">Storage</a>
-                                        <a href="/rail-transport" class="footer-link">Railway</a>
-                                        <a href="/pipeline-transport" class="footer-link">Pipeline</a>
-                                        <a href="/terminal" class="footer-link">Terminal</a>
+                                        <div class="footer-link dropdown" style="position: relative; display: inline-block;">
+                                            <span style="cursor:pointer;">Services &#9662;</span>
+                                            <div class="dropdown-content" style="display:none; position:absolute; left:0; background:#fff; min-width:180px; box-shadow:0 8px 16px rgba(0,0,0,0.2); z-index:1000;">
+                                                <a href="{{ url_for('shipping_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Port-to-Port Shipping</a>
+                                                <a href="{{ url_for('railway_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Railway Logistics</a>
+                                                <a href="{{ url_for('terminal_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Terminal Handling</a>
+                                                <a href="{{ url_for('pipeline_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Pipeline Transport</a>
+                                                <a href="{{ url_for('storage_page') }}" class="dropdown-item" style="display:block; padding:10px 16px; color:#222; text-decoration:none;">Warehousing & Storage</a>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
                                 <div class="margin-bottom margin-medium">
                                     <div class="footer-details-wrapper">
+<script>
+// Simple dropdown for navbar and footer
+document.addEventListener('DOMContentLoaded', function() {
+  var navDropdown = document.querySelector('.navbar-link.dropdown');
+  if (navDropdown) {
+    var navContent = navDropdown.querySelector('.dropdown-content');
+    navDropdown.addEventListener('mouseenter', function() {
+      navContent.style.display = 'block';
+    });
+    navDropdown.addEventListener('mouseleave', function() {
+      navContent.style.display = 'none';
+    });
+  }
+  var footerDropdown = document.querySelector('.footer-link.dropdown');
+  if (footerDropdown) {
+    var footerContent = footerDropdown.querySelector('.dropdown-content');
+    footerDropdown.addEventListener('mouseenter', function() {
+      footerContent.style.display = 'block';
+    });
+    footerDropdown.addEventListener('mouseleave', function() {
+      footerContent.style.display = 'none';
+    });
+  }
+});
+</script>
                                         <div class="margin-bottom margin-tiny">
                                             <div class="text-size-small text-weight-semibold">Address:</div>
                                         </div>
