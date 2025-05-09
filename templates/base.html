@@ -8,6 +8,7 @@
     <title>Global Logistics</title>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="../static/css/7b135bc0f.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/mobile-menu-fix.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
@@ -346,25 +347,61 @@ a,
 <script>
 // Simple dropdown for navbar and footer
 document.addEventListener('DOMContentLoaded', function() {
+  function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  }
+
+  // Navbar dropdown
   var navDropdown = document.querySelector('.navbar-link.dropdown');
   if (navDropdown) {
     var navContent = navDropdown.querySelector('.dropdown-content');
-    navDropdown.addEventListener('mouseenter', function() {
-      navContent.style.display = 'block';
-    });
-    navDropdown.addEventListener('mouseleave', function() {
-      navContent.style.display = 'none';
-    });
+    var navToggle = navDropdown.querySelector('span');
+    if (isTouchDevice()) {
+      navToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = navContent.style.display === 'block';
+        navContent.style.display = isOpen ? 'none' : 'block';
+      });
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!navDropdown.contains(e.target)) {
+          navContent.style.display = 'none';
+        }
+      });
+    } else {
+      navDropdown.addEventListener('mouseenter', function() {
+        navContent.style.display = 'block';
+      });
+      navDropdown.addEventListener('mouseleave', function() {
+        navContent.style.display = 'none';
+      });
+    }
   }
+
+  // Footer dropdown
   var footerDropdown = document.querySelector('.footer-link.dropdown');
   if (footerDropdown) {
     var footerContent = footerDropdown.querySelector('.dropdown-content');
-    footerDropdown.addEventListener('mouseenter', function() {
-      footerContent.style.display = 'block';
-    });
-    footerDropdown.addEventListener('mouseleave', function() {
-      footerContent.style.display = 'none';
-    });
+    var footerToggle = footerDropdown.querySelector('span');
+    if (isTouchDevice()) {
+      footerToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = footerContent.style.display === 'block';
+        footerContent.style.display = isOpen ? 'none' : 'block';
+      });
+      document.addEventListener('click', function(e) {
+        if (!footerDropdown.contains(e.target)) {
+          footerContent.style.display = 'none';
+        }
+      });
+    } else {
+      footerDropdown.addEventListener('mouseenter', function() {
+        footerContent.style.display = 'block';
+      });
+      footerDropdown.addEventListener('mouseleave', function() {
+        footerContent.style.display = 'none';
+      });
+    }
   }
 });
 </script>
